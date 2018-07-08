@@ -1,0 +1,33 @@
+{
+  "name": "mastering-promises",
+  "version": "1.0.0",
+  "description": "Learn how to use promises in different cases",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raapperez/mastering-promises.git"
+  },
+  "author": "raapperez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raapperez/mastering-promises/issues"
+  },
+  "homepage": "https://github.com/raapperez/mastering-promises#readme",
+  "dependencies": {
+    "next": "^6.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1"
+  }
+}
