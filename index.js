@@ -171,6 +171,40 @@ const test15 = () => {
   const thirdPromise = secondPromise;
 
   thirdPromise.then(console.log);
+  thirdPromise.then(console.log);
 };
 
 test15();
+
+
+const test16 = () => {
+  const myPromise = Promise.resolve()
+    .then(() => {
+      console.log('Executou aqui');
+      return asyncFail(16);
+    });
+
+  myPromise
+    .then(() => console.log('Passou no then'))
+    .catch(error => console.log(`Erro: ${error.message}`));
+  myPromise.catch(error => console.log(`Erro: ${error.message}`));
+  myPromise.catch(error => console.log(`Erro: ${error.message}`));
+};
+
+test16();
+
+const test17 = () => {
+  const myPromise = Promise.resolve('a');
+
+  myPromise.then((result) => {
+    return Promise.resolve('b')
+      .then((otherResult) => {
+        console.log(result);
+        return otherResult;
+      });
+  }).then(result => console.log(result));
+  myPromise.then(() => console.log('c'));
+  myPromise.then(() => console.log('d'));
+};
+
+test17();
