@@ -208,3 +208,112 @@ const test17 = () => {
 };
 
 test17();
+
+const test18 = () => {
+  const myPromise = Promise.resolve('a');
+
+  myPromise.then((result) => {
+    console.log(result);
+  });
+  console.log('b');
+};
+
+test18();
+
+const test19 = () => {
+  const myPromise = Promise.all([
+    asyncSuccess('a'),
+    asyncSuccess('b'),
+    asyncSuccess('c'),
+  ]);
+
+  return myPromise.then((result) => {
+    console.log(result);
+  });
+};
+
+test19();
+
+const test20 = () => {
+  const myPromise = Promise.all([
+    asyncSuccess('a'),
+    asyncFail('b'),
+    asyncFail('c'),
+  ]);
+
+  return myPromise.then((result) => {
+    console.log(result);
+  }).catch((err) => {
+    console.log('error', err.message);
+  });
+};
+
+test20();
+
+const test21 = () => {
+  const myPromise = Promise.all([
+    asyncSuccess('a').catch(err => ({ error: err.message })),
+    asyncFail('b').catch(err => ({ error: err.message })),
+    asyncFail('c').catch(err => ({ error: err.message })),
+  ]);
+
+  return myPromise.then((result) => {
+    console.log(result);
+  }).catch((err) => {
+    console.log('error', err.message);
+  });
+};
+
+test21();
+
+const test22 = () => {
+  const promises = [
+    asyncSuccess('a'),
+    asyncSuccess('b'),
+    asyncSuccess('c'),
+  ];
+
+  return promises.reduce((lastPromise, currentPromise) => {
+    return lastPromise.then(currentPromise);
+  }, Promise.resolve()).then((result) => {
+    console.log(result);
+  });
+};
+
+test22();
+
+const test23 = () => {
+  const promises = [
+    asyncSuccess('a'),
+    asyncSuccess('b'),
+    asyncSuccess('c'),
+  ];
+
+  return promises.reduce((lastPromise, currentPromise) => {
+    return lastPromise.then((lastResult) => {
+      return currentPromise.then(currentResult => [...lastResult, currentResult]);
+    });
+  }, Promise.resolve([])).then((result) => {
+    console.log(result);
+  });
+};
+
+test23();
+
+const test24 = () => {
+  const promises = [
+    asyncSuccess('a'),
+    asyncFail('b').catch(err => ({ error: err.message })),
+    asyncFail('c').catch(err => ({ error: err.message })),
+  ];
+
+  return promises.reduce((lastPromise, currentPromise) => {
+    return lastPromise.then((lastResult) => {
+      return currentPromise.then(currentResult => [...lastResult, currentResult]);
+    });
+  }, Promise.resolve([])).then((result) => {
+    console.log(result);
+  });
+};
+
+test24();
