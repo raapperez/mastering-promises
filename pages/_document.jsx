@@ -7,6 +7,10 @@ export default class MyDocument extends Document {
       <html lang="pt-BR">
         <Head>
           <link rel="stylesheet" href="/_next/static/style.css" />
+          <meta name="author" content="Rodrigo Augusto Azevedo Pelegrini Perez" />
+          <meta name="description" content="Veja com exemplos tudo o que você precisa saber de Promises." />
+          <meta name="keywords" content="Promise,JavaScript" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
         <body>
           <Main />
