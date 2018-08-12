@@ -12,7 +12,9 @@ const question = {
   description: '',
   problem: test1,
   answers: [
-
+    'A',
+    'B',
+    'C',
   ],
 };
 
@@ -25,7 +27,7 @@ export default () => (
       `}
     </style>
     Welcome to next.js!
-    <Question isMultiplayer={true} {...question} />
+    <Question isMultiplayer={true} question={question} />
     {'oi'}
   </div>
 );
