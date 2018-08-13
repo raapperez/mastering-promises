@@ -30,7 +30,7 @@ test2();
 
 export default [
   {
-    description: 'Quando a promise é completada com sucesso...',
+    description: 'Quando a PROMISE é completada com sucesso...',
     dependencies: [
       asyncSuccess,
       asyncFail,

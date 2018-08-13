@@ -55,12 +55,12 @@ class Question extends PureComponent {
     const { description, problem, answers, dependencies } = question;
     return (
       <div>
-        <div>
+        <div className="question__description">
           {description}
         </div>
-        <div className="dependencies">
+        <div className="question__dependencies">
           {_.map(dependencies, (dependency, index) => (
-            <pre className="dependencies__item" key={index}>
+            <pre className="question__dependencies__item" key={index}>
               <code
                 className="javascript"
                 dangerouslySetInnerHTML={{
@@ -71,7 +71,7 @@ class Question extends PureComponent {
           ))}
 
         </div>
-        <div>
+        <div className="question__problem">
           <pre>
             <code
               className="javascript"
@@ -82,15 +82,41 @@ class Question extends PureComponent {
           </pre>
         </div>
 
-        <SinglePlayerForm onSubmit={console.log} answers={answers} />
+        <div className="question__form">
+          <SinglePlayerForm onSubmit={console.log} answers={answers} />
+        </div>
         <style jsx>
           {`
-            .dependencies {
-              display: flex;
+            .question__description {
+              background-color: #2b2b2b;
+              box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
+              color: #cb7832;
+              font-family: monospace;
+              font-size: 1.6rem;
+              padding: 8px;
             }
 
-            .dependencies__item:not(:first-child) {
+            .question__dependencies {
+              display: flex;
+              margin-top: 8px;
+            }
+
+            .question__dependencies__item {
+              box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
+            }
+
+            .question__dependencies__item:not(:first-child) {
               margin-left: 8px;
+            }
+
+            .question__problem {
+              box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
+              margin-top: 8px;
+            }
+
+            .question__form {
+              box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
+              margin-top: 8px;
             }
           `}
         </style>

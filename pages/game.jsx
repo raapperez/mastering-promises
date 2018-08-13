@@ -13,6 +13,22 @@ class GamePage extends PureComponent {
     return (
       <div>
         <Question question={questions[0]} />
+        <style jsx global>
+          {`
+            body {
+              background-color: #f5f5dc;
+              margin: 8px;
+            }
+
+            input[type=radio] {
+              margin: 0 8px 0 0;
+            }
+
+            pre {
+              margin: 0;
+            }
+          `}
+        </style>
       </div>
     );
   }
