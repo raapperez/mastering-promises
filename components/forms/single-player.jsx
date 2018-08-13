@@ -25,6 +25,7 @@ const SinglePlayer = (props) => {
         {`
           .single-player-form {
             background-color: #2b2b2b;
+            border-radius: 4px;
             padding: 8px;
           }
 

@@ -18,20 +18,21 @@ function formatCode(code) {
 }
 
 class Question extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 'question',
+    };
+  }
+
   componentDidMount() {
     hljs.initHighlighting();
   }
 
-  getStyle() {
-    return (
-      <style jsx>
-        {`
-        .dependencies {
-          display: flex;
-        }
-        `}
-      </style>
-    );
+  verifyAnswer(formData) {
+    const { answer } = formData;
+    const { question } = this.props;
+    console.log(answer, question.correct);
   }
 
   renderForm() {
@@ -52,7 +53,14 @@ class Question extends PureComponent {
 
   render() {
     const { question, onSubmit } = this.props;
-    const { description, problem, answers, dependencies } = question;
+    const {
+      answers,
+      dependencies,
+      description,
+      problem,
+    } = question;
+    const { step } = this.state;
+
     return (
       <div>
         <div className="question__description">
@@ -82,13 +90,19 @@ class Question extends PureComponent {
           </pre>
         </div>
 
-        <div className="question__form">
-          <SinglePlayerForm onSubmit={console.log} answers={answers} />
-        </div>
+        {step === 'question' ? (
+          <div className="question__form">
+            <SinglePlayerForm onSubmit={evt => this.verifyAnswer(evt)} answers={answers} />
+          </div>
+        ) : (
+          null
+        )}
+
         <style jsx>
           {`
             .question__description {
               background-color: #2b2b2b;
+              border-radius: 4px;
               box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
               color: #cb7832;
               font-family: monospace;
@@ -102,6 +116,7 @@ class Question extends PureComponent {
             }
 
             .question__dependencies__item {
+              border-radius: 4px;
               box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
             }
 
@@ -110,11 +125,13 @@ class Question extends PureComponent {
             }
 
             .question__problem {
+              border-radius: 4px;
               box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
               margin-top: 8px;
             }
 
             .question__form {
+              border-radius: 4px;
               box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
               margin-top: 8px;
             }

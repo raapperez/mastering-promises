@@ -45,6 +45,7 @@ export default [
       'Erro: falha(abacaxi)',
       'Erro: sucesso(abacaxi)',
     ],
+    correct: 0,
   },
   {
 

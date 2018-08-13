@@ -17,7 +17,7 @@ class GamePage extends PureComponent {
           {`
             body {
               background-color: #f5f5dc;
-              margin: 8px;
+              margin: 32px;
             }
 
             input[type=radio] {
@@ -26,6 +26,10 @@ class GamePage extends PureComponent {
 
             pre {
               margin: 0;
+            }
+
+            code.hljs {
+              border-radius: 4px;
             }
           `}
         </style>
