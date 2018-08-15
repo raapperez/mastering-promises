@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const asyncSuccess = param => new Promise((resolve) => {
   setTimeout(() => {
     resolve(`sucesso(${param})`);
@@ -10,22 +12,13 @@ const asyncFail = param => new Promise((resolve, reject) => {
   }, 100);
 });
 
+// const test2 = () => {
+//   asyncFail(2)
+//     .then(console.log)
+//     .catch(error => console.log(`Erro: ${error.message}`));
+// };
 
-const test1 = () => {
-  asyncSuccess(1)
-    .then(console.log)
-    .catch(error => console.log(`Erro: ${error.message}`));
-};
-
-test1();
-
-const test2 = () => {
-  asyncFail(2)
-    .then(console.log)
-    .catch(error => console.log(`Erro: ${error.message}`));
-};
-
-test2();
+// test2();
 
 
 export default [
@@ -36,7 +29,7 @@ export default [
       asyncFail,
     ],
     problem: () => {
-      asyncSuccess('abacaxi')
+      return asyncSuccess('abacaxi')
         .then(console.log)
         .catch(error => console.log(`Erro: ${error.message}`));
     },
@@ -45,7 +38,6 @@ export default [
       'Erro: falha(abacaxi)',
       'Erro: sucesso(abacaxi)',
     ],
-    correct: 0,
   },
   {
 

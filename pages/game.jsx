@@ -12,7 +12,7 @@ class GamePage extends PureComponent {
   render() {
     return (
       <div>
-        <Question question={questions[0]} />
+        <Question question={questions[0]} isMultiplayer={false} />
         <style jsx global>
           {`
             body {

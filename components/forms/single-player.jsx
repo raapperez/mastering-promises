@@ -14,7 +14,7 @@ const SinglePlayer = (props) => {
     <form className="single-player-form" onSubmit={handleSubmit}>
       {_.map(answers, (answer, index) => (
         <label className="single-player-form__answer" key={index} htmlFor={`answer${index}`}>
-          <Field className="single-player-form__answer-input" name="answer" component="input" type="radio" value={index.toString()} id={`answer${index}`} />
+          <Field className="single-player-form__answer-input" name="answer" component="input" type="radio" value={answer} id={`answer${index}`} />
           {answer}
         </label>
       ))}
