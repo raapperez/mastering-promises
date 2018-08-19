@@ -66,7 +66,7 @@ class Question extends PureComponent {
   }
 
   renderForm() {
-    const { isMultiplayer, onSubmit, question } = this.props;
+    const { isMultiplayer, question } = this.props;
     const { answers } = question;
 
     if (isMultiplayer) {
@@ -81,6 +81,79 @@ class Question extends PureComponent {
         answers={answers}
         onSubmit={evt => this.verifyAnswer(evt)}
       />
+    );
+  }
+
+  renderEndButton() {
+    const { onSubmit } = this.props;
+    const { value, step } = this.state;
+
+    if (step !== 'end') return null;
+
+    if (value >= 0) {
+      return (
+        <button
+          className="question__button question__button--correct"
+          onClick={() => { onSubmit(value); }}
+          type="submit"
+        >
+          Acertei :D
+          <style jsx>
+            {`
+              .question__button {
+                border: 0;
+                color: #fff;
+                cursor: pointer;
+                font-family: monospace;
+                font-weight: bold;
+                height: 32px;
+                margin-top: 8px;
+                width: 100%;
+              }
+
+              .question__button--correct {
+                background-color: #6a8759;
+              }
+
+              .question__button--correct:hover {
+                background-color: #93ae84;
+              }
+            `}
+          </style>
+        </button>
+      );
+    }
+
+    return (
+      <button
+        className="question__button question__button--wrong"
+        onClick={() => { onSubmit(value); }}
+        type="submit"
+      >
+        Errei D:
+        <style jsx>
+          {`
+            .question__button {
+              border: 0;
+              color: #fff;
+              cursor: pointer;
+              font-family: monospace;
+              font-weight: bold;
+              height: 32px;
+              margin-top: 8px;
+              width: 100%;
+            }
+
+            .question__button--wrong {
+              background-color: #d15d41;
+            }
+
+            .question__button--wrong:hover {
+              background-color: #d18471;
+            }
+          `}
+        </style>
+      </button>
     );
   }
 
@@ -144,13 +217,7 @@ class Question extends PureComponent {
             <div className="question__result-content">
               { output }
             </div>
-            {step === 'end' ? (
-              <button type="submit">
-                Acertei :D
-              </button>
-            ) : (
-              null
-            )}
+            {this.renderEndButton()}
           </div>
         )}
 
@@ -226,7 +293,7 @@ Question.propTypes = {
     dependencies: PropTypes.arrayOf(PropTypes.func),
   }).isRequired,
   isMultiplayer: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Question;

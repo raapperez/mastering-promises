@@ -6,13 +6,38 @@ class GamePage extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      step: 0,
+      results: {
+      },
+    };
+  }
+
+  nextQuestion(result) {
+    this.setState((prevState) => {
+      const { step, results } = prevState;
+
+      return {
+        step: step + 1,
+        results: {
+          ...results,
+          [step]: result,
+        },
+      };
+    });
   }
 
   render() {
+    const { step } = this.state;
+
     return (
       <div>
-        <Question question={questions[0]} isMultiplayer={false} />
+        <Question
+          key={step}
+          question={questions[step]}
+          isMultiplayer={false}
+          onSubmit={result => this.nextQuestion(result)}
+        />
         <style jsx global>
           {`
             body {
