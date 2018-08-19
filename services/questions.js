@@ -56,5 +56,21 @@ export default [
       'Erro: sucesso(beterraba)',
     ],
   },
-
+  {
+    description: 'Quando a PROMISE é completada com erro...',
+    dependencies: [
+      asyncSuccess,
+      asyncFail,
+    ],
+    problem: () => {
+      return asyncFail('beterraba')
+        .then(console.log)
+        .catch(error => console.log(`Erro: ${error.message}`));
+    },
+    answers: [
+      'sucesso(beterraba)',
+      'Erro: falha(beterraba)',
+      'Erro: sucesso(beterraba)',
+    ],
+  },
 ];
