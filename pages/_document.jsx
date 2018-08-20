@@ -11,6 +11,7 @@ export default class MyDocument extends Document {
           <meta name="description" content="Veja com exemplos tudo o que você precisa saber de Promises." />
           <meta name="keywords" content="Promise,JavaScript" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <script src="static/questions.js" />
         </Head>
         <body>
           <Main />

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, { PureComponent } from 'react';
 import Question from '../components/question';
-import questions from '../services/questions';
 import ResultGraph from '../components/result-graph';
 
 class GamePage extends PureComponent {
@@ -37,6 +36,8 @@ class GamePage extends PureComponent {
   }
 
   nextQuestion(result) {
+    const { questions } = window;
+
     this.setState((prevState) => {
       const { questionIndex, results } = prevState;
 
@@ -62,6 +63,14 @@ class GamePage extends PureComponent {
   }
 
   render() {
+    if (typeof window === 'undefined') {
+      return (
+        <div>
+          Loading...
+        </div>
+      );
+    }
+    const { questions } = window;
     const { questionIndex, step } = this.state;
 
     return (
@@ -82,27 +91,6 @@ class GamePage extends PureComponent {
         ) : (
           null
         )}
-
-        <style jsx global>
-          {`
-            body {
-              background-color: #f5f5dc;
-              margin: 32px;
-            }
-
-            input[type=radio] {
-              margin: 0 8px 0 0;
-            }
-
-            pre {
-              margin: 0;
-            }
-
-            code.hljs {
-              border-radius: 4px;
-            }
-          `}
-        </style>
       </div>
     );
   }

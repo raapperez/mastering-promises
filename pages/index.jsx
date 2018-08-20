@@ -20,26 +20,51 @@ const question = {
 };
 
 export default () => (
-  <div className="oi">
-    <style jsx>
-      {`
-        .oi {
-        }
-      `}
-    </style>
-
-    <h1>Dominando Promises</h1>
-    <h2>Rodrigo Augusto Azevedo Pelegrini Perez</h2>
+  <div className="index">
+    <h1 className="index__title">Dominando Promises</h1>
+    <h2 className="index__author">Rodrigo Augusto Azevedo Pelegrini Perez</h2>
 
     <Link href="/game">
         <a>Continuar</a>
     </Link>
 
-    <div>
-      Novo jogo:
-      <a>Sozinho</a>
-      <a>Grupo</a>
+    <div className="index__options">
+      <a>Jogar Sozinho</a>
+      <a>Jogar em Grupo</a>
     </div>
 
+    <style jsx>
+      {`
+        .index {
+          align-items: center;
+          background-color: #2b2b2b;
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          font-family: monospace;
+          justify-content: center;
+          padding: 8px;
+          height: calc(100vh - 80px);
+        }
+
+        .index__title {
+          font-size: 52px;
+          color: #cb7832;
+        }
+
+        .index__author {
+          color: #bababa;
+          font-size: 28px;
+        }
+
+        .index__options {
+          display: flex;
+          flex-direction: column;
+          font-size: 22px;
+          font-weight: bold;
+          align-items: center;
+        }
+      `}
+    </style>
   </div>
 );

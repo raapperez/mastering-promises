@@ -28,7 +28,7 @@ class Question extends PureComponent {
   }
 
   componentDidMount() {
-    hljs.initHighlighting();
+    _.forEach(document.querySelectorAll('pre code'), b => hljs.highlightBlock(b));
   }
 
   verifyAnswer(formData) {
