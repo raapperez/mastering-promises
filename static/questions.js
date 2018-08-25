@@ -24,7 +24,7 @@ window.questions = [
       asyncSuccess,
       asyncFail,
     ],
-    problem: () => {
+    problem: function abacaxi() {
       return asyncSuccess('abacaxi')
         .then(console.log)
         .catch(error => console.log(`Erro: ${error.message}`));
@@ -38,10 +38,9 @@ window.questions = [
   {
     description: 'Quando a PROMISE é completada com erro...',
     dependencies: [
-      asyncSuccess,
       asyncFail,
     ],
-    problem: () => {
+    problem: function beterraba() {
       return asyncFail('beterraba')
         .then(console.log)
         .catch(error => console.log(`Erro: ${error.message}`));
@@ -57,7 +56,7 @@ window.questions = [
     dependencies: [
       asyncFail,
     ],
-    problem: async function foo() {
+    problem: async function cebola() {
       try {
         const result = await asyncFail('cebola');
         console.log(result);
@@ -72,63 +71,88 @@ window.questions = [
       'null',
     ],
   },
+  {
+    description: 'Criando uma PROMISE já resolvida...',
+    dependencies: [
+    ],
+    problem: function mexerica() {
+      return Promise.resolve('mexerica')
+        .then(result => console.log(`Sucesso: ${result}`))
+        .catch(error => console.log(`Erro: ${error.message}`));
+    },
+    answers: [
+      'Sucesso: mexerica',
+      'Erro: mexerica',
+    ],
+  },
+  {
+    description: 'Criando uma PROMISE já rejeitada...',
+    dependencies: [
+    ],
+    problem: function uva() {
+      return Promise.reject(new Error('uva'))
+        .then(result => console.log(`Sucesso: ${result}`))
+        .catch(error => console.log(`Erro: ${error.message}`));
+    },
+    answers: [
+      'Sucesso: uva',
+      'Erro: uva',
+    ],
+  },
+  {
+    description: 'Quando acontece um erro no THEN...',
+    dependencies: [
+      asyncSuccess,
+    ],
+    problem: function milho() {
+      return asyncSuccess('milho')
+        .then((result) => {
+          console.log(result);
+          throw new Error(`falha(${result})`);
+          console.log('milho verde');
+        })
+        .catch(error => console.log(`Erro: ${error.message}`));
+    },
+    answers: [
+      'Erro: sucesso(milho)',
+      'sucesso(milho)|Erro: sucesso(falha(milho))',
+      'sucesso(milho)|Erro: falha(sucesso(milho))',
+      'sucesso(milho)|Erro: falha(sucesso(milho))|milho verde',
+    ],
+  },
+  {
+    description: 'O que acontece num CATCH antes de um THEN num fluxo de sucesso...',
+    dependencies: [
+      asyncSuccess,
+    ],
+    problem: function laranja() {
+      return asyncSuccess('laranja')
+        .catch(error => console.log(`Erro: ${error.message}`))
+        .then(console.log);
+    },
+    answers: [
+      'sucesso(laranja)',
+      'Erro: falha(laranja)',
+      'undefined',
+    ],
+  },
+  {
+    description: 'O que acontece num CATCH antes de um THEN num fluxo de erro...',
+    dependencies: [
+      asyncFail,
+    ],
+    problem: function melancia() {
+      return asyncFail('melancia')
+        .catch(error => console.log(`Erro: ${error.message}`))
+        .then(console.log);
+    },
+    answers: [
+      'Erro: falha(melancia)',
+      'Erro: falha(melancia)|sucesso(melancia)',
+      'Erro: falha(melancia)|undefined',
+    ],
+  },
 ];
-
-
-
-// const test3 = () => asyncFail(3).then(error => console.log(`Erro: ${error.message}`));
-
-// async function x() {
-//   try {
-//     await test3();
-//   } catch (e) {
-//     console.log(`Erro: ${e.message}`);
-//   }
-// }
-
-// x();
-
-// const test4 = () => {
-//   Promise.resolve('hello')
-//     .then(result => console.log(`${result} sucesso`))
-//     .catch(error => console.log(`Erro: ${error.message} falha!`));
-// };
-
-// test4();
-
-// const test5 = () => {
-//   Promise.reject(new Error('hello'))
-//     .then(result => console.log(`${result} sucesso`))
-//     .catch(error => console.log(`Erro: ${error.message} falha!`));
-// };
-
-// test5();
-
-// const test6 = () => {
-//   asyncSuccess(6)
-//     .then((result) => {
-//       throw new Error(result);
-//     })
-//     .catch(error => console.log(`Erro: ${error.message}`));
-// };
-
-// test6();
-
-// const test7 = () => {
-//   asyncSuccess(7)
-//     .catch(error => console.log(`Erro: ${error.message}`))
-//     .then(console.log);
-// };
-
-// test7();
-
-// const test8 = () => {
-//   asyncFail(8)
-//     .catch(error => console.log(`Erro: ${error.message}`))
-//     .then(console.log);
-// };
-
-// test8();
 
 // const test9 = () => {
 //   asyncFail(9)
