@@ -6,6 +6,7 @@ export default class MyDocument extends Document {
     return (
       <html lang="pt-BR">
         <Head>
+          <title>Dominando Promises</title>
           <link rel="stylesheet" href="/_next/static/style.css" />
           <meta name="author" content="Rodrigo Augusto Azevedo Pelegrini Perez" />
           <meta name="description" content="Veja com exemplos tudo o que você precisa saber de Promises." />

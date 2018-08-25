@@ -1,15 +1,20 @@
 
-const asyncSuccess = param => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve(`sucesso(${param})`);
-  }, 100);
-});
 
-const asyncFail = param => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject(new Error(`falha(${param})`));
-  }, 100);
-});
+function asyncSuccess(param) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`sucesso(${param})`);
+    }, 100);
+  });
+}
+
+function asyncFail(param) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error(`falha(${param})`));
+    }, 100);
+  });
+}
 
 
 window.questions = [
@@ -48,7 +53,7 @@ window.questions = [
     ],
   },
   {
-    description: 'Quando a PROMISE é completada com erro...',
+    description: 'Quando a PROMISE é completada com erro usando await...',
     dependencies: [
       asyncFail,
     ],

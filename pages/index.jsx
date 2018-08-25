@@ -1,70 +1,106 @@
-import React from 'react';
-import Question from '../components/question';
+import React, { PureComponent } from 'react';
 import 'highlightjs/styles/darkula.css';
-import Link from 'next/link';
+import Router from 'next/router';
 
-const test1 = () => {
-  asyncSuccess(1)
-    .then(console.log)
-    .catch(error => console.log(`Erro: ${error.message}`));
-};
+class IndexPage extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-const question = {
-  description: '',
-  problem: test1,
-  answers: [
-    'A',
-    'B',
-    'C',
-  ],
-};
+  playSinglePlayer() {
+    Router.push('/game');
+  }
 
-export default () => (
-  <div className="index">
-    <h1 className="index__title">Dominando Promises</h1>
-    <h2 className="index__author">Rodrigo Augusto Azevedo Pelegrini Perez</h2>
+  playMultiPlayer() {
+    Router.push('/game');
+  }
 
-    <Link href="/game">
-        <a>Continuar</a>
-    </Link>
+  render() {
+    return (
+      <div className="index">
+        <h1 className="index__title">Dominando Promises</h1>
+        <h2 className="index__author">Rodrigo Augusto Azevedo Pelegrini Perez</h2>
 
-    <div className="index__options">
-      <a>Jogar Sozinho</a>
-      <a>Jogar em Grupo</a>
-    </div>
+        <div className="index__options">
+          <button
+            className="index__link"
+            onClick={() => this.playSinglePlayer()}
+            type="button"
+          >
+            Jogar Sozinho
+          </button>
+          <button
+            className="index__link"
+            onClick={() => this.playMultiPlayer()}
+            type="button"
+          >
+            Jogar em Grupo
+          </button>
+        </div>
 
-    <style jsx>
-      {`
-        .index {
-          align-items: center;
-          background-color: #2b2b2b;
-          border-radius: 4px;
-          display: flex;
-          flex-direction: column;
-          font-family: monospace;
-          justify-content: center;
-          padding: 8px;
-          height: calc(100vh - 80px);
-        }
+        <style jsx>
+          {`
+            .index {
+              align-items: center;
+              background-color: #2b2b2b;
+              border-radius: 4px;
+              display: flex;
+              flex-direction: column;
+              font-family: monospace;
+              justify-content: center;
+              padding: 8px;
+              height: calc(100vh - 80px);
+            }
 
-        .index__title {
-          font-size: 52px;
-          color: #cb7832;
-        }
+            .index__title {
+              font-size: 52px;
+              color: #cb7832;
+            }
 
-        .index__author {
-          color: #bababa;
-          font-size: 28px;
-        }
+            .index__author {
+              color: #bababa;
+              font-size: 28px;
+            }
 
-        .index__options {
-          display: flex;
-          flex-direction: column;
-          font-size: 22px;
-          font-weight: bold;
-          align-items: center;
-        }
-      `}
-    </style>
-  </div>
-);
+            .index__options {
+              align-items: center;
+              display: flex;
+              flex-direction: column;
+              margin-top: 48px;
+            }
+
+            .index__link {
+              background: transparent;
+              border: 0;
+              color: #e0c46c;
+              cursor: pointer;
+              font-size: 22px;
+              font-weight: bold;
+              text-decoration: none;
+              user-select: none;
+            }
+
+            .index__link:not(:first-child) {
+              margin-top: 16px;
+            }
+
+            .index__link:hover {
+              color: #6a8759;
+            }
+
+            .index__link:hover::before {
+              content: "> ";
+            }
+
+            .index__link:hover::after {
+              content: " <";
+            }
+          `}
+        </style>
+      </div>
+    );
+  }
+}
+
+export default IndexPage;
