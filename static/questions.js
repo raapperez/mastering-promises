@@ -435,7 +435,7 @@ window.questions = [
       ];
 
       return promises.reduce((lastPromise, currentPromise) => {
-        return lastPromise.then(() => currentPromise());
+        return lastPromise.then(currentPromise);
       }, Promise.resolve())
         .then((result) => {
           console.log(result);
