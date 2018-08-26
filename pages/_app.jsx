@@ -29,6 +29,10 @@ class MyApp extends App {
             code.hljs {
               border-radius: 4px;
             }
+
+            canvas {
+              max-height: 80vh;
+            }
           `}
         </style>
       </Container>
