@@ -37,7 +37,7 @@ class ResultGraph extends PureComponent {
   render() {
     return (
       <div className="result-graph">
-        <canvas ref={(c) => { this.graph = c; }} width="800" height="600" />
+        <canvas ref={(c) => { this.graph = c; }} />
         <style jsx>
           {`
             .result-graph {

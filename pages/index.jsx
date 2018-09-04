@@ -28,14 +28,7 @@ class IndexPage extends PureComponent {
             onClick={() => this.playSinglePlayer()}
             type="button"
           >
-            Jogar Sozinho
-          </button>
-          <button
-            className="index__link"
-            onClick={() => this.playMultiPlayer()}
-            type="button"
-          >
-            Jogar em Grupo
+            Jogar
           </button>
         </div>
 

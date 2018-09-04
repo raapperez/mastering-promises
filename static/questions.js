@@ -83,6 +83,8 @@ window.questions = [
     answers: [
       'Sucesso: mexerica',
       'Erro: mexerica',
+      'null',
+      'undefined',
     ],
   },
   {
@@ -97,6 +99,8 @@ window.questions = [
     answers: [
       'Sucesso: goiaba',
       'Erro: goiaba',
+      'null',
+      'undefined',
     ],
   },
   {
@@ -330,8 +334,8 @@ window.questions = [
 
       const secondPromise = firstPromise
         .then((result) => {
-          console.log('Executou aqui');
-          return `Novo resultado: ${result}`;
+          console.log('aqui');
+          return `Novo: ${result}`;
         });
 
       const thirdPromise = secondPromise;
@@ -342,9 +346,9 @@ window.questions = [
       ]);
     },
     answers: [
-      'Executou aqui|Novo resultado: sucesso(mandioca)|Novo resultado: sucesso(mandioca)',
-      'Executou aqui|Novo resultado: sucesso(mandioca)|Executou aqui|Novo resultado: sucesso(mandioca)',
-      'Executou aqui|Executou aqui|Novo resultado: sucesso(mandioca)',
+      'aqui|Novo: sucesso(mandioca)|Novo: sucesso(mandioca)',
+      'aqui|Novo: sucesso(mandioca)|aqui|Novo: sucesso(mandioca)',
+      'aqui|aqui|Novo: sucesso(mandioca)',
     ],
   },
   {
@@ -353,22 +357,22 @@ window.questions = [
     ],
     problem: function tamarindo() {
       const myPromise = new Promise((resolve, reject) => {
-        console.log('Executou aqui');
+        console.log('aqui');
         reject(new Error('tamarindo'));
       });
 
       return Promise.all([
         myPromise
-          .then(() => console.log('Passou no then'))
+          .then(() => console.log('then'))
           .catch(error => console.log(`Erro: ${error.message}`)),
         myPromise.catch(error => console.log(`Erro: ${error.message}`)),
         myPromise.catch(error => console.log(`Erro: ${error.message}`)),
       ]);
     },
     answers: [
-      'Executou aqui|Erro: tamarindo|Executou aqui|Erro: tamarindo|Executou aqui|Erro: tamarindo',
-      'Executou aqui|Erro: tamarindo|Erro: tamarindo|Erro: tamarindo',
-      'Executou aqui|Passou no then|Erro: tamarindo|Erro: tamarindo|Erro: tamarindo',
+      'aqui|Erro: tamarindo|Erro: tamarindo|aqui|Erro: tamarindo',
+      'aqui|Erro: tamarindo|Erro: tamarindo|Erro: tamarindo',
+      'aqui|then|Erro: tamarindo|Erro: tamarindo|Erro: tamarindo',
     ],
   },
   {
@@ -497,6 +501,7 @@ window.questions = [
       'a',
       'u-v-a',
       'u-falha(v)-falha(a)',
+      'undefined',
     ],
   },
 ];
