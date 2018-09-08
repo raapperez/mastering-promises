@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import 'highlightjs/styles/darkula.css';
 import Router from 'next/router';
+import Link from 'next/link';
 
 class IndexPage extends PureComponent {
   constructor(props) {
@@ -9,10 +10,6 @@ class IndexPage extends PureComponent {
   }
 
   playSinglePlayer() {
-    Router.push('/game');
-  }
-
-  playMultiPlayer() {
     Router.push('/game');
   }
 
@@ -30,6 +27,11 @@ class IndexPage extends PureComponent {
           >
             Jogar
           </button>
+          <Link href="/introduction">
+            <span className="index__link">
+              Callbacks VS Promises
+            </span>
+          </Link>
         </div>
 
         <style jsx>
